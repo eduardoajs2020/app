@@ -1,0 +1,68 @@
+PROMETHEUS
+
+1 - Criar pasta e arquivo dentro do diretório raiz
+
+2 - Criar Arquivo index.js - Conteúdo:
+
+let express = require('express');
+
+let prom = require('prom-client');
+
+let app = express();
+
+app.get('/', function(req, res){
+    res.send('Olá teste do docker e prometheus!');
+});
+
+app.listen(3000);
+
+
+3 - Instalar e configurar o node express: C:\DEV\devops\prometheus\aulas\app>npm install --save express
+
+4 - Iniciar o arquivo:  C:\DEV\devops\prometheus\aulas\app> node .\index.js
+
+5 - Adicionando o prometheus à minha aplicação: adicionar o cliente library do prometheus(https://prometheus.io/docs/introduction/overview/): npm install --save prom-client
+
+6 - incluir o cliente no código:  let prom = require('prom-client');
+
+let express = require('express');
+
+let prom = require('prom-client');
+
+let app = express();
+
+app.get('/', function(req, res){
+    res.send('Olá teste do docker e prometheus!');
+});
+
+app.listen(3000);
+
+7 - Adicionando a primeira métrica: contador counter:
+
+const counter = new client.Counter({
+name:'metric_name',
+help:'metric_help'
+});
+
+***********************************************************
+let express = require('express');
+
+let client = require('prom-client');
+
+let app = express();
+
+const counter = new client.Counter({
+name:'metric_name',
+help:'metric_help'
+});
+
+
+app.get('/', function(req, res){
+    res.send('Olá teste do docker e prometheus!');
+});
+
+app.listen(3000);
+
+******************************************************
+
+criar /metrics
